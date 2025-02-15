@@ -1,0 +1,6 @@
+session_id,user_id,thread_id,intent,created_at,updated_at
+1,2,fakethread_id,hats,2025-02-05T21:04:14.693358,2025-02-05T21:04:14.693358
+2,2,thread_K8rKbuvUED0hIVNuUZCIdUJR,shopping for new laptop,2025-02-06T22:27:57.112606,2025-02-06T22:27:57.112606
+3,2,thread_pjUuLKXiHxOnbbr8dEocBH3J,shoes,2025-02-07T20:12:07.476387,2025-02-07T20:12:07.476387
+4,2,thread_LGgRK6ovnNpsgpdTN5H3I2VQ,shopping for shoes,2025-02-07T20:15:53.502774,2025-02-07T20:15:53.502774
+5,2,thread_WyI0eyuOIX0NVr8ZPUFRlrwX,Shopping for laptop,2025-02-07T20:47:37.872335,2025-02-07T20:47:37.872335

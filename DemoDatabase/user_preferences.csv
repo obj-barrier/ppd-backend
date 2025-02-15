@@ -1,0 +1,25 @@
+preference_id,user_id,preference_key,preference_value
+1,1,Age,21
+2,1,Location,Chicago
+3,1,Status,Single
+4,1,Career,Economics Student
+5,1,Budget,Low
+6,1,Interests,"Aesthetics, Streaming TV, Online Shopping"
+7,1,Tech Savviness,Medium
+8,1,Shopping Needs,"Wants to buy a laptop for schoolwork, streaming, and online shopping"
+9,2,Age,59
+10,2,Location,Chicago
+11,2,Status,Married
+12,2,Career,Corporate Executive
+13,2,Budget,High
+14,2,Interests,"Golf, Spending time with family, Day Trading"
+15,2,Tech Savviness,Low
+16,2,Shopping Needs,Wants to buy his wife a reliable laptop for her day to day needs
+17,3,Age,34
+18,3,Location,Chicago
+19,3,Status,Married
+20,3,Career,Graphic Designer
+21,3,Budget,Medium
+22,3,Interests,"Digital Design, Travel Documentaries, Baking"
+23,3,Tech Savviness,High
+24,3,Shopping Needs,Needs a laptop for graphic design and video editing work
