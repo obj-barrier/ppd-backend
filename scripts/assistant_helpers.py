@@ -37,10 +37,8 @@ def create_chat_thread(client, user_preferences, intent):
 
     # Step 3: Add a second assistant message that asks clarifying questions.
     clarifying_questions = (
-        "To better assist you, could you please answer a few questions:\n"
-        "1. What is your price range?\n"
-        "2. Are there any specific brands or features you're looking for?\n"
-        "3. Any other details that are important to you?"
+        "Hi! I'm your personal shopping assistant.\n"
+        "Please tell me about your usage of the product so I can better assist you."
     )
     msg2 = client.beta.threads.messages.create(
         thread_id=thread_id,
