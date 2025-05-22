@@ -1,6 +1,6 @@
 flask
 flask_cors
-hypercorn
+gunicorn
 openai
 python-dotenv
 pydantic
