@@ -1,4 +1,3 @@
-# test_api_cli.py
 import requests
 import sys
 import os
@@ -17,6 +16,8 @@ def menu():
     print("8. Generate Product Description")
     print("9. Login")
     print("10. Get All Sessions for User")
+    print("11. Generate Product Comparison")
+    print("12. End Shopping Session (Extract Preferences)")
     print("0. Exit")
 
 def create_user_flow():
@@ -25,11 +26,7 @@ def create_user_flow():
     email = input("Enter email: ")
     password = input("Enter password: ")
 
-    data = {
-        "name": name,
-        "email": email,
-        "password": password
-    }
+    data = {"name": name, "email": email, "password": password}
     resp = requests.post(f"{BASE_URL}/users", json=data)
     if resp.status_code == 201:
         print("User created successfully!")
@@ -50,10 +47,8 @@ def get_user_flow():
 def update_user_preferences_flow():
     print("\n--- Update User Preferences ---")
     user_id = input("Enter user_id: ")
-
     print("\nEnter preferences (key=value).")
     print("Type 'done' when finished.\n")
-
     prefs_list = []
     while True:
         line = input("pref: ")
@@ -64,7 +59,6 @@ def update_user_preferences_flow():
             prefs_list.append({"key": key.strip(), "value": value.strip()})
         else:
             print("Invalid format. Use key=value or 'done' to finish.")
-
     data = {"preferences": prefs_list}
     resp = requests.post(f"{BASE_URL}/users/{user_id}/preferences", json=data)
     if resp.status_code == 200:
@@ -87,7 +81,6 @@ def create_shopping_session_flow():
     print("\n--- Create Shopping Session ---")
     user_id = input("Enter user_id: ")
     intent = input("What is the user shopping for? (intent): ")
-
     data = {"intent": intent}
     resp = requests.post(f"{BASE_URL}/users/{user_id}/shopping_sessions", json=data)
     if resp.status_code == 201:
@@ -110,7 +103,6 @@ def add_chat_message_flow():
     print("\n--- Add Chat Message to Session ---")
     session_id = input("Enter session_id: ")
     message = input("Enter your chat message: ")
-
     data = {"message": message}
     resp = requests.post(f"{BASE_URL}/shopping_sessions/{session_id}/messages", json=data)
     if resp.status_code == 200:
@@ -123,18 +115,15 @@ def generate_product_description_flow():
     print("\n--- Generate Product Description ---")
     session_id = input("Enter session_id: ")
     file_path = input("Enter the path to the product page text file: ")
-
     if not os.path.exists(file_path):
         print("File not found.")
         return
-
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             product_page = f.read()
     except Exception as e:
         print("Error reading file:", e)
         return
-
     data = {"product_page": product_page}
     resp = requests.post(f"{BASE_URL}/shopping_sessions/{session_id}/product_description", json=data)
     if resp.status_code == 200:
@@ -147,7 +136,6 @@ def login_flow():
     print("\n--- Login ---")
     email = input("Enter email: ")
     password = input("Enter password: ")
-
     data = {"email": email, "password": password}
     resp = requests.post(f"{BASE_URL}/login", json=data)
     if resp.status_code == 200:
@@ -162,6 +150,26 @@ def get_user_sessions_flow():
     resp = requests.get(f"{BASE_URL}/users/{user_id}/sessions")
     if resp.status_code == 200:
         print("User sessions:")
+        print(resp.json())
+    else:
+        print("Error:", resp.status_code, resp.text)
+
+def generate_product_comparison_flow():
+    print("\n--- Generate Product Comparison ---")
+    session_id = input("Enter session_id: ")
+    resp = requests.post(f"{BASE_URL}/shopping_sessions/{session_id}/product_comparison")
+    if resp.status_code == 200:
+        print("Comparison results:")
+        print(resp.json())
+    else:
+        print("Error:", resp.status_code, resp.text)
+
+def end_shopping_session_flow():
+    print("\n--- End Shopping Session (Extract Preferences) ---")
+    session_id = input("Enter session_id: ")
+    resp = requests.post(f"{BASE_URL}/shopping_sessions/{session_id}/end")
+    if resp.status_code == 200:
+        print("Session ended and preferences updated:")
         print(resp.json())
     else:
         print("Error:", resp.status_code, resp.text)
@@ -190,6 +198,10 @@ def main():
             login_flow()
         elif choice == "10":
             get_user_sessions_flow()
+        elif choice == "11":
+            generate_product_comparison_flow()
+        elif choice == "12":
+            end_shopping_session_flow()
         elif choice == "0":
             print("Exiting...")
             sys.exit(0)
@@ -198,5 +210,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

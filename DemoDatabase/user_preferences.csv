@@ -23,3 +23,7 @@ preference_id,user_id,preference_key,preference_value
 22,3,Interests,"Digital Design, Travel Documentaries, Baking"
 23,3,Tech Savviness,High
 24,3,Shopping Needs,Needs a laptop for graphic design and video editing work
+25,4,birthday,09/14/1997
+26,4,occupation,MSIT Student at NU
+27,4,zipcode,60201
+28,4,allergy,peanuts

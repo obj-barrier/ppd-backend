@@ -1,4 +1,6 @@
-Flask
+flask
+flask_cors
+hypercorn
 openai
 python-dotenv
-flask-cors
+pydantic

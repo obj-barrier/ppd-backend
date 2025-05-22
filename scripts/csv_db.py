@@ -5,6 +5,7 @@ from datetime import datetime
 USERS_CSV = os.path.join("DemoDatabase", "users.csv")
 PREFERENCES_CSV = os.path.join("DemoDatabase", "user_preferences.csv")
 SESSIONS_CSV = os.path.join("DemoDatabase", "shopping_sessions.csv")
+PRODUCT_PAGES_CSV = os.path.join("DemoDatabase", "product_pages.csv")
 
 # ------------------------------------------------------------------------------
 # 1. CSV READ/WRITE UTILITY FUNCTIONS
@@ -292,3 +293,28 @@ def get_shopping_sessions_by_user_id(user_id):
     return user_sessions
 
 
+# ------------------------------------------------------------------------------
+# PRODUCT PAGES
+# ------------------------------------------------------------------------------
+def load_product_pages():
+    # Let DictReader infer the header from the first row in the file
+    return load_csv(PRODUCT_PAGES_CSV, fieldnames=None)
+
+def save_product_pages(pages_list):
+    # Use explicit fieldnames when saving
+    fieldnames = ["session_id", "product_page"]
+    save_csv(PRODUCT_PAGES_CSV, pages_list, fieldnames)
+
+def add_product_page(session_id, product_page):
+    pages = load_product_pages()  # will read properly with no repeated header
+    new_record = {
+        "session_id": str(session_id),
+        "product_page": str(product_page)
+    }
+    pages.append(new_record)
+    save_product_pages(pages)
+    return new_record
+
+def get_product_pages_by_session_id(session_id):
+    pages = load_product_pages()
+    return [p for p in pages if p["session_id"] == str(session_id)]

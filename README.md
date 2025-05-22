@@ -1,7 +1,6 @@
 # Personalized Shopping Assistant API Documentation
 
-**Version:** 1.0  
-**Base URL:** `http://127.0.0.1:5000/api`
+**Base URL:** `http:--127.0.0.1:5000-api`
 
 **Overview:**  
 This API enables a personalized shopping experience by managing users, their preferences, and shopping sessions. It leverages OpenAI’s Assistants API to power real-time chat interactions and generate tailored product descriptions based on user conversation history and product page details. Data is stored in CSV files (for demo purposes) located in the `DemoDatabase` folder.
@@ -22,8 +21,8 @@ This API enables a personalized shopping experience by managing users, their pre
    - [Get All Sessions for a User](#get-all-sessions-for-a-user)
    - [Add Chat Message to Session](#add-chat-message-to-session)
    - [Generate Product Description](#generate-product-description)
-4. [Testing the API](#testing-the-api)
-5. [Additional Notes](#additional-notes)
+   - [Generate Product Comparison](#generate-product-comparison)
+   - [End Shopping Session](#end-shopping-session)
 
 ---
 
@@ -32,76 +31,76 @@ This API enables a personalized shopping experience by managing users, their pre
 ### Create User
 
 **Endpoint:**  
-`POST /api/users`
+`POST -api-users`
 
 **Description:**  
 Creates a new user with the provided name, email, and password.
 
 **Request Body Example:**
 
-```json
+````json
 {
   "name": "John Doe",
-  "email": "john@example.com",
+  "email": "john```example.com",
   "password": "securepassword"
 }
-```
+````
 
 **Response Example:**
 
-```json
+````json
 {
   "user_id": "1",
   "name": "John Doe",
-  "email": "john@example.com",
+  "email": "john```example.com",
   "created_at": "2025-02-06T12:00:00"
 }
-```
+````
 
 **cURL Example:**
 
-```bash
-curl -X POST http://127.0.0.1:5000/api/users 
-  -H "Content-Type: application/json" 
-  -d '{"name": "John Doe", "email": "john@example.com", "password": "securepassword"}'
-```
+````bash
+curl -X POST http:--127.0.0.1:5000-api-users
+  -H "Content-Type: application-json"
+  -d '{"name": "John Doe", "email": "john```example.com", "password": "securepassword"}'
+````
 
 ---
 
 ### Login
 
 **Endpoint:**  
-`POST /api/login`
+`POST -api-login`
 
 **Description:**  
 Authenticates a user using email and password. Returns the user info if the credentials are correct.
 
 **Request Body Example:**
 
-```json
+````json
 {
-  "email": "john@example.com",
+  "email": "john```example.com",
   "password": "securepassword"
 }
-```
+````
 
 **Response Example (Success):**
 
-```json
+````json
 {
   "user_id": "1",
   "name": "John Doe",
-  "email": "john@example.com"
+  "email": "john```example.com"
 }
-```
+````
 
 **cURL Example:**
 
-```bash
-curl -X POST http://127.0.0.1:5000/api/login 
-  -H "Content-Type: application/json" 
-  -d '{"email": "john@example.com", "password": "securepassword"}'
-```
+````bash
+curl -X POST http:--127.0.0.1:5000-api-login
+  -H "Content-Type: application-json"
+  -d '{"email": "john```example.com", "password": "securepassword"}'
+````
 
 ---
 
@@ -110,7 +109,7 @@ curl -X POST http://127.0.0.1:5000/api/login
 ### Update Preferences
 
 **Endpoint:**  
-`POST /api/users/<user_id>/preferences`
+`POST -api-users-<user_id>-preferences`
 
 **Description:**  
 Creates or updates user preferences.
@@ -151,8 +150,8 @@ Creates or updates user preferences.
 **cURL Example:**
 
 ```bash
-curl -X POST http://127.0.0.1:5000/api/users/1/preferences 
-  -H "Content-Type: application/json" 
+curl -X POST http:--127.0.0.1:5000-api-users-1-preferences
+  -H "Content-Type: application-json"
   -d '{"preferences": [{"key": "budget", "value": "$100-$200"}, {"key": "color", "value": "red"}]}'
 ```
 
@@ -161,7 +160,7 @@ curl -X POST http://127.0.0.1:5000/api/users/1/preferences
 ### Get Preferences
 
 **Endpoint:**  
-`GET /api/users/<user_id>/preferences`
+`GET -api-users-<user_id>-preferences`
 
 **Description:**  
 Returns the preferences for the specified user.
@@ -191,7 +190,7 @@ Returns the preferences for the specified user.
 **cURL Example:**
 
 ```bash
-curl http://127.0.0.1:5000/api/users/1/preferences
+curl http:--127.0.0.1:5000-api-users-1-preferences
 ```
 
 ---
@@ -201,7 +200,7 @@ curl http://127.0.0.1:5000/api/users/1/preferences
 ### Create Shopping Session
 
 **Endpoint:**  
-`POST /api/users/<user_id>/shopping_sessions`
+`POST -api-users-<user_id>-shopping_sessions`
 
 **Description:**  
 Creates a new shopping session for the user with the specified intent. This endpoint automatically creates a chat thread (using the OpenAI Assistants API) and stores the associated `thread_id` with the session.
@@ -230,8 +229,8 @@ Creates a new shopping session for the user with the specified intent. This endp
 **cURL Example:**
 
 ```bash
-curl -X POST http://127.0.0.1:5000/api/users/1/shopping_sessions 
-  -H "Content-Type: application/json" 
+curl -X POST http:--127.0.0.1:5000-api-users-1-shopping_sessions
+  -H "Content-Type: application-json"
   -d '{"intent": "Looking for a new pair of running shoes"}'
 ```
 
@@ -240,7 +239,7 @@ curl -X POST http://127.0.0.1:5000/api/users/1/shopping_sessions
 ### Get Shopping Session
 
 **Endpoint:**  
-`GET /api/shopping_sessions/<session_id>`
+`GET -api-shopping_sessions-<session_id>`
 
 **Description:**  
 Retrieves the shopping session details using the session ID.
@@ -261,7 +260,7 @@ Retrieves the shopping session details using the session ID.
 **cURL Example:**
 
 ```bash
-curl http://127.0.0.1:5000/api/shopping_sessions/1
+curl http:--127.0.0.1:5000-api-shopping_sessions-1
 ```
 
 ---
@@ -269,7 +268,7 @@ curl http://127.0.0.1:5000/api/shopping_sessions/1
 ### Get All Sessions for a User
 
 **Endpoint:**  
-`GET /api/users/<user_id>/sessions`
+`GET -api-users-<user_id>-sessions`
 
 **Description:**  
 Returns all shopping sessions for the specified user.
@@ -300,7 +299,7 @@ Returns all shopping sessions for the specified user.
 **cURL Example:**
 
 ```bash
-curl http://127.0.0.1:5000/api/users/1/sessions
+curl http:--127.0.0.1:5000-api-users-1-sessions
 ```
 
 ---
@@ -308,7 +307,7 @@ curl http://127.0.0.1:5000/api/users/1/sessions
 ### Add Chat Message to Session
 
 **Endpoint:**  
-`POST /api/shopping_sessions/<session_id>/messages`
+`POST -api-shopping_sessions-<session_id>-messages`
 
 **Description:**  
 Adds a new chat message to the conversation thread associated with the shopping session. The endpoint returns the updated list of messages.
@@ -343,8 +342,8 @@ Adds a new chat message to the conversation thread associated with the shopping 
 **cURL Example:**
 
 ```bash
-curl -X POST http://127.0.0.1:5000/api/shopping_sessions/1/messages 
-  -H "Content-Type: application/json" 
+curl -X POST http:--127.0.0.1:5000-api-shopping_sessions-1-messages
+  -H "Content-Type: application-json"
   -d '{"message": "Can you recommend a good brand for running shoes?"}'
 ```
 
@@ -353,16 +352,16 @@ curl -X POST http://127.0.0.1:5000/api/shopping_sessions/1/messages
 ### Generate Product Description
 
 **Endpoint:**  
-`POST /api/shopping_sessions/<session_id>/product_description`
+`POST -api-shopping_sessions-<session_id>-product_description`
 
 **Description:**  
-Generates a personalized product description using the product description assistant. This endpoint accepts a product page string and uses the conversation history from the session’s chat thread to generate the description.
+Generates a personalized product description using the product description assistant. This endpoint accepts a product page string and uses the conversation history from the session```s chat thread to generate the description.
 
 **Request Body Example:**
 
 ```json
 {
-  "product_page": "Detailed product page information, in string format."
+  "product_page": "Detailed product page information, including specifications, reviews, and images."
 }
 ```
 
@@ -382,9 +381,91 @@ Generates a personalized product description using the product description assis
 **cURL Example:**
 
 ```bash
-curl -X POST http://127.0.0.1:5000/api/shopping_sessions/1/product_description 
-  -H "Content-Type: application/json" 
+curl -X POST http:--127.0.0.1:5000-api-shopping_sessions-1-product_description
+  -H "Content-Type: application-json"
   -d '{"product_page": "Detailed product page information, including specifications, reviews, and images."}'
+```
+
+---
+
+### Generate Product Comparison
+
+**Endpoint:**  
+`POST -api-shopping_sessions-<session_id>-product_comparison`
+
+**Description:**  
+Generates a comparative analysis of multiple products in the given shopping session. The endpoint uses the comparison assistant to retrieve any product page data associated with the session, and returns a structured JSON comparison table describing the pros-cons or differences between them.
+
+**Request Body Example:**
+
+```json
+{}
+```
+
+_(No additional data is required, as product pages are already associated with this session.)_
+
+**Response Example:**
+
+```json
+[
+  {
+    "id": "msg_250",
+    "role": "assistant",
+    "created_at": 1699016600,
+    "content": "JSON string representation of comparison table"
+  }
+]
+```
+
+**cURL Example:**
+
+```bash
+curl -X POST http:--127.0.0.1:5000-api-shopping_sessions-1-product_comparison
+  -H "Content-Type: application-json"
+  -d '{}'
+```
+
+---
+
+### End Shopping Session
+
+**Endpoint:**  
+`POST -api-shopping_sessions-<session_id>-end`
+
+**Description:**  
+Ends a shopping session by analyzing the user```s conversation and extracting any key user preferences or insights. The conversation thread is retrieved, and the model is instructed to produce a structured JSON output containing newly discovered user preferences. These preferences are automatically persisted in the user preferences table.
+
+**Request Body Example:**
+
+```json
+{}
+```
+
+_(No additional data is required — the endpoint will analyze the existing conversation.)_
+
+**Response Example:**
+
+```json
+{
+  "message": "Session ended. Preferences updated.",
+  "updated_preferences": [
+    { "key": "Marital Status", "value": "Married" },
+    { "key": "Career", "value": "Graphic Designer" },
+    {
+      "key": "Interests",
+      "value": "Digital Design, Travel Documentaries, Baking"
+    },
+    { "key": "Tech Savviness", "value": "High" }
+  ]
+}
+```
+
+**cURL Example:**
+
+```bash
+curl -X POST http:--127.0.0.1:5000-api-shopping_sessions-1-end
+  -H "Content-Type: application-json"
+  -d '{}'
 ```
 
 ---
@@ -393,36 +474,36 @@ curl -X POST http://127.0.0.1:5000/api/shopping_sessions/1/product_description
 
 You can test the API using the provided interactive test client (`test_api_cli.py`). This script presents a menu with the following options:
 
-1. **Create User**  
-2. **Get User by ID**  
-3. **Update User Preferences**  
-4. **Get User Preferences**  
-5. **Create Shopping Session**  
-6. **Get Shopping Session**  
-7. **Add Chat Message to Session**  
-8. **Generate Product Description**  
-9. **Login**  
-10. **Get All Sessions for a User**  
-0. **Exit**
+1. **Create User**
+2. **Get User by ID**
+3. **Update User Preferences**
+4. **Get User Preferences**
+5. **Create Shopping Session**
+6. **Get Shopping Session**
+7. **Add Chat Message to Session**
+8. **Generate Product Description**
+9. **Login**
+10. **Get All Sessions for a User**
+11. **Generate Product Comparison**
+12. **End Shopping Session**
+13. **Exit**
 
 ### How to Run the Server and Test Client
 
 1. **Start the Server:**  
    Run the Flask server using:
 
-```bash
-python app.py
-```
+   ```bash
+   python app.py
+   ```
 
-   Ensure the server is running on `http://127.0.0.1:5000`.
+   Ensure the server is running on `http:--127.0.0.1:5000`.
 
 2. **Run the Test Client:**  
    In another terminal, run:
-
-```bash
-python test_api_cli.py
-```
-
+   ```bash
+   python test_api_cli.py
+   ```
    Follow the on-screen prompts to interact with the API.
 
 ---
